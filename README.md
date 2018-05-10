@@ -1,4 +1,4 @@
-# Rerquirements
+# Requirements
 Before running the application run the following instructions to ensure all libraries and dependencies are installed.
 * cd ../ml-challenge-expenses/
 * python3 -r requirements.txt
@@ -10,7 +10,7 @@ Before running the application run the following instructions to ensure all libr
 # Data Processing
 For the purpose of this task, the employee.csv file seemed completely useless and was disregarded.
 
-Within the trainig_data_example.csv the *date* and *emplyee id* also seemed useless. 
+Within the trainig_data_example.csv the *date* and *emplyee id* also seemed useless.
 
 The category column is used for outputs while all other subsequent columns are input data.
 
@@ -21,16 +21,16 @@ Here are the unique string types:
 ### Outputs
 ```
 ['Travel' 'Meals and Entertainment' 'Computer - Hardware'
- 'Computer - Software' 'Office Supplies']
+'Computer - Software' 'Office Supplies']
 ```
 
 ### Inputs
 ```
 ['Taxi ride' 'Team lunch' 'HP Laptop Computer' 'Microsoft Office'
- 'Dropbox Subscription' 'Coffee with Steve' 'Client dinner'
- 'Flight to Miami' 'Macbook Air Computer' 'iCloud Subscription' 'Paper'
- 'Dinner with potential client' 'iPhone' 'Airplane ticket to NY'
- 'Starbucks coffee' 'Dinner with client' 'Dinner']  
+'Dropbox Subscription' 'Coffee with Steve' 'Client dinner'
+'Flight to Miami' 'Macbook Air Computer' 'iCloud Subscription' 'Paper'
+'Dinner with potential client' 'iPhone' 'Airplane ticket to NY'
+'Starbucks coffee' 'Dinner with client' 'Dinner'] 
 ```
 
 ```
@@ -44,7 +44,7 @@ After preprocessing the data, a json file is created in /ml-challenge-expenses/d
 
 # ML Technique used
 ## Hypothesis
-### Decision Trees  
+### Decision Trees 
 Would have made sense if money spent was directly correlated to the category of prediction. (brackets of spent money). In this context, using continuous values didn't feel appropriate as spending 1000$ could indicate a very expensive dinner or a plane ticket. For this reason, the decision tree would have performed very poorly in my opinion.
 
 ### Support Vector Machines
@@ -73,5 +73,4 @@ Some values of F1, Recall, and Precision are 1 or 0 which signifies that there s
 # Question 2
 *Mixing of personal and business expenses is a common problem for small business. Create an algorithm that can separate any potential personal expenses in the training data. Labels of personal and business expenses were deliberately not given as this is often the case in our system. There is no right answer so it is important you provide any assumptions you have made*
 
-I do not have time to work on this because I am in my final school semester. However this sounds like an NLP problem with binary classification. Very easy to do with a large enough dataset of words which either relate to business expenses or personal expesnses. Naive Bayes for this, it almost sounds plug and play. 
-
+I do not have time to work on this because I am in my final school semester. However this sounds like an NLP problem with binary classification. Very easy to do with a large enough dataset of words which either relate to business expenses or personal expenses. Naive Bayes for this, it almost sounds plug and play.
