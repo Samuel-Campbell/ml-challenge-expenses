@@ -1,6 +1,7 @@
 import csv
 import pandas
 import json
+import numpy
 
 
 class Parser:
@@ -44,27 +45,66 @@ class Parser:
             'output': {}
         }
 
-        column_index['input']['pre-tax amount'] = {'column_index': 0}
-        column_index['input']['tax amount'] = {'column_index': 1}
+        column_index['input']['pre-tax amount'] = {
+            'column_index': 0,
+            'type': 'int'
+        }
+
+        column_index['input']['tax amount'] = {
+            'column_index': 1,
+            'type': 'int'
+        }
 
         index = 2
 
         for i in range(len(unique_expense_desc)):
-            column_index['input'][unique_expense_desc[i]] = {'column_index': i + index}
+            column_index['input'][unique_expense_desc[i]] = {
+                'column_index': i + index,
+                'type': 'str'
+            }
 
         index += len(unique_expense_desc)
 
         for i in range(len(unique_tax_name)):
-            column_index['input'][unique_tax_name[i]] = {'column_index': i + index}
+            column_index['input'][unique_tax_name[i]] = {
+                'column_index': i + index,
+                'type': 'str'
+            }
 
         for i in range(len(unique_categories)):
             column_index['output'][unique_categories[i]] = {'value': i}
 
         Parser.__save_column_index(column_index)
+        return Parser.__post_process_data(data_list)
+
+    @staticmethod
+    def __post_process_data(data_list):
+        json_data = Parser.__read_column_index()
+        Y = [data[1] for data in data_list]
+        data_list = [d[3:] for d in data_list]
+        X = []
+
+        for i in range(len(data_list)):
+            x = numpy.zeros(len(json_data['input']))
+            x[json_data['input']['pre-tax amount']['column_index']] = data_list[i][3]
+            x[json_data['input']['tax amount']['column_index']] = data_list[i][3]
+
+            for j in range(len(data_list[i])):
+                try:
+                    float(data_list[i][j])
+                except ValueError:
+                    x[json_data['input'][data_list[i][j]]['column_index']] = 1
+            X.append(x)
+        return X, Y
 
     @staticmethod
     def __save_column_index(json_file):
-        with open('../data/column_index.txt', 'w') as outfile:
+        with open('../data/column_index.json', 'w') as outfile:
             json.dump(json_file, outfile)
 
-Parser.parse_csv_data(Parser.training_data_file)
+    @staticmethod
+    def __read_column_index():
+        with open('../data/column_index.json') as f:
+            data = json.load(f)
+        return data
+
