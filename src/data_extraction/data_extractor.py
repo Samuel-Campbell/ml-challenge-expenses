@@ -44,9 +44,6 @@ class Parser:
         unique_expense_desc = table['expense description'].unique()
         unique_tax_name = table['tax name'].unique()
 
-        print(unique_categories)
-        print(unique_expense_desc)
-        print(unique_tax_name)
         column_index = {
             'input': {},
             'output': {}
@@ -110,8 +107,8 @@ class Parser:
     @staticmethod
     def __save_column_index(json_file):
         root_directory = os.path.abspath(__file__ + "r/../../")
-        json_file = os.path.join(root_directory, r"data/column_index.json")
-        with open(json_file, 'w') as outfile:
+        jf = os.path.join(root_directory, r"data/column_index.json")
+        with open(jf, 'w') as outfile:
             json.dump(json_file, outfile)
 
     @staticmethod

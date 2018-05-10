@@ -42,6 +42,7 @@ Originally the input vector is instantiate to all 0's. All unique input string t
 
 After preprocessing the data, a json file is created in /ml-challenge-expenses/data/ where this sort of meta data about vector configurations can be found.
 
+
 # ML Technique used
 ## Hypothesis
 ### Decision Trees 
@@ -51,7 +52,7 @@ Would have made sense if money spent was directly correlated to the category of 
 Support vector machines are great at binary classification OR combinational results where 1 estimator is chosen for every classification. However, for this problem an output may have many values. The only option would be a one vs. rest classifier at which point I believe there are more elegant techniques for this approach.
 
 ### Deep Learning (Chosen)
-The Deep Learning classifier is excellent for this particular problem as it solves both problematic stated above. The classifier can predict multiple categories while updating feature weights in order to minimize or mazimize important information.
+The Deep Learning classifier is excellent for this particular problem as it solves both problematic stated above. The classifier can predict multiple categories while updating feature weights in order to minimize or maximize important information.
 
 For the purpose of a quick demo/assignment as well as for the fact that there is a very limited amount of data available, I have opted to go with a simple feed forward network.
 
@@ -70,7 +71,9 @@ F1: [0.66666667 0.77777778 0.         0.        ]
 # Interpretation
 Some values of F1, Recall, and Precision are 1 or 0 which signifies that there simply isn't enough validation data. As for the accuracy, it is high enough for us to notice that there indeed is some correlation between spending habbits and its associated category. With more abundant information it would perhaps be possible to increase this value.
 
+Furthermore, a small project as this one which took me around 2 hours to evaluate and code is sufficient to demonstrate whether machine learning can truly solve the problem. Because there are 5 possible outputs AND the accuracy is over 0.20% then we can assume that the prediction functioned without randomness.
+
 # Question 2
 *Mixing of personal and business expenses is a common problem for small business. Create an algorithm that can separate any potential personal expenses in the training data. Labels of personal and business expenses were deliberately not given as this is often the case in our system. There is no right answer so it is important you provide any assumptions you have made*
 
-I do not have time to work on this because I am in my final school semester. However this sounds like an NLP problem with binary classification. Very easy to do with a large enough dataset of words which either relate to business expenses or personal expenses. Naive Bayes for this, it almost sounds plug and play.
+I do not have time to work on this because I am in my final school semester (Not to mention that I am unavailable to accept this job offer in the coming month). However this sounds like an NLP problem with binary classification. Very easy to do with a large enough dataset of words which either relate to business expenses or personal expenses. Naive Bayes for this, it almost sounds plug and play. Recursive Neural Networks if you are feeling fancy.
