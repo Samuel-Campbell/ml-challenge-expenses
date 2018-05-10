@@ -2,12 +2,15 @@ import csv
 import pandas
 import json
 import numpy
+import os
 
 
 class Parser:
-    training_data_file = "../data/training_data_example.csv"
-    validation_data_file = "../data/validation_data_example.csv"
-    employee_file = "../data/employee.csv"
+    root_directory = os.path.abspath(__file__ + "r/../../")
+    training_data_file = os.path.join(root_directory, r"data/training_data_example.csv")
+    validation_data_file = os.path.join(root_directory, r"data/validation_data_example.csv")
+    employee_file = os.path.join(root_directory, r"data/employee.csv")
+
 
     def __init__(self):
         pass
@@ -41,6 +44,9 @@ class Parser:
         unique_expense_desc = table['expense description'].unique()
         unique_tax_name = table['tax name'].unique()
 
+        print(unique_categories)
+        print(unique_expense_desc)
+        print(unique_tax_name)
         column_index = {
             'input': {},
             'output': {}
@@ -103,11 +109,15 @@ class Parser:
 
     @staticmethod
     def __save_column_index(json_file):
-        with open('../data/column_index.json', 'w') as outfile:
+        root_directory = os.path.abspath(__file__ + "r/../../")
+        json_file = os.path.join(root_directory, r"data/column_index.json")
+        with open(json_file, 'w') as outfile:
             json.dump(json_file, outfile)
 
     @staticmethod
     def __read_column_index():
-        with open('../data/column_index.json') as f:
+        root_directory = os.path.abspath(__file__ + "r/../../")
+        json_file = os.path.join(root_directory, r"data/column_index.json")
+        with open(json_file) as f:
             data = json.load(f)
         return data

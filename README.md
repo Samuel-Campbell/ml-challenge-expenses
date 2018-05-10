@@ -1,70 +1,77 @@
-ML Challenge Markdown
-# Wave Machine Learning Engineer Challenge
-Applicants for the Software Engineer (and Senior), Machine Learning(https://wave.bamboohr.co.uk/jobs/view.php?id=1) role at Wave must complete the following challenge, and submit a solution prior to the onsite interview. 
+# Rerquirements
+Before running the application run the following instructions to ensure all libraries and dependencies are installed.
+* cd ../ml-challenge-expenses/
+* python3 -r requirements.txt
 
-The purpose of this exercise is to create something that we can work on together during the onsite. We do this so that you get a chance to collaborate with Wavers during the interview in a situation where you know something better than us (it's your code, after all!) 
+# Running the app
+* cd ../ml-challenge-expenses/src/
+* python3 main.py
 
-There isn't a hard deadline for this exercise; take as long as you need to complete it. However, in terms of total time spent actively working on the challenge, we ask that you not spend more than a few hours, as we value your time and are happy to leave things open to discussion in the onsite interview.
+# Data Processing
+For the purpose of this task, the employee.csv file seemed completely useless and was disregarded.
 
-Please use whatever programming language, libraries and framework you feel the most comfortable with.  Preference here at Wave is Python.
+Within the trainig_data_example.csv the *date* and *emplyee id* also seemed useless. 
 
-Feel free to email [dev.careers@waveapps.com](dev.careers@waveapps.com) if you have any questions.
+The category column is used for outputs while all other subsequent columns are input data.
 
-## Project Description
-Continue improvements in automation and enhancing the user experience are keys to what make Wave successful.  Simplifying the lives of our customers through automation is a key initiative for the machine learning team.  Your task is to solve the following questions around automation.
+We notice that there are a combination of both numerical and string values in the table. For this reason, all output string types are re-mapped to integers while input string types are booleans.
 
-### What your learning application must do:
+Here are the unique string types:
 
-1. Your application must be able read provided comma separated files. 
+### Outputs
+```
+['Travel' 'Meals and Entertainment' 'Computer - Hardware'
+ 'Computer - Software' 'Office Supplies']
+```
 
-2. Similarly, your application must accept a separate comma separated file as validation data with the same format.
-3. You can make the following assumptions:
-	* Columns will always be in that order.
-	* There will always be data in each column.
- 	* There will always be a header line.
+### Inputs
+```
+['Taxi ride' 'Team lunch' 'HP Laptop Computer' 'Microsoft Office'
+ 'Dropbox Subscription' 'Coffee with Steve' 'Client dinner'
+ 'Flight to Miami' 'Macbook Air Computer' 'iCloud Subscription' 'Paper'
+ 'Dinner with potential client' 'iPhone' 'Airplane ticket to NY'
+ 'Starbucks coffee' 'Dinner with client' 'Dinner']  
+```
 
-An example input files named `training_data_example.csv`, `validation_data_example.csv` and `employee.csv` are included in this repo.  A sample code `file_parser.py` is provided in Python to help get you started with loading all the files.  You are welcome to use if you like.
+```
+['NY Sales tax' 'CA Sales tax']
+```
 
-1. Your application must parse the given files.
-2. Your application should train only on the training data but report on its performance for both data sets.
-3. You are free to define appropriate performance metrics, in additional to any predefined, that fit the problem and chosen algorithm.
-4. You are welcome to answer one or more of the following questions.  Also, you are free to drill down further on any of these questions by providing additional insights.
+## Final data visualization
+Originally the input vector is instantiate to all 0's. All unique input string types are represented by a different column/dimension in the input vector. If information is present then the column representing the string becomes a 1 or else it stays 0. Numerical types are simply entered as is in their column.
 
-Your application should be easy to run, and should run on either Linux or Mac OS X.  It should not require any non open-source software.
+After preprocessing the data, a json file is created in /ml-challenge-expenses/data/ where this sort of meta data about vector configurations can be found.
 
-There are many ways and algorithms to solve these questions; we ask that you approach them in a way that showcases one of your strengths. We're happy to tweak the requirements slightly if it helps you show off one of your strengths.
+# ML Technique used
+## Hypothesis
+### Decision Trees  
+Would have made sense if money spent was directly correlated to the category of prediction. (brackets of spent money). In this context, using continuous values didn't feel appropriate as spending 1000$ could indicate a very expensive dinner or a plane ticket. For this reason, the decision tree would have performed very poorly in my opinion.
 
-### Questions to answer:
-1. Train a learning model that assigns each expense transaction to one of the set of predefined categories and evaluate it against the validation data provided.  The set of categories are those found in the "category" column in the training data. Report on accuracy and at least one other performance metric.
-2. Mixing of personal and business expenses is a common problem for small business.  Create an algorithm that can separate any potential personal expenses in the training data.  Labels of personal and business expenses were deliberately not given as this is often the case in our system.  There is no right answer so it is important you provide any assumptions you have made.
-3. (Bonus) Train your learning algorithm for one of the above questions in a distributed fashion, such as using Spark.  Here, you can assume either the data or the model is too large/efficient to be process in a single computer.
+### Support Vector Machines
+Support vector machines are great at binary classification OR combinational results where 1 estimator is chosen for every classification. However, for this problem an output may have many values. The only option would be a one vs. rest classifier at which point I believe there are more elegant techniques for this approach.
 
-### Documentation:
+### Deep Learning (Chosen)
+The Deep Learning classifier is excellent for this particular problem as it solves both problematic stated above. The classifier can predict multiple categories while updating feature weights in order to minimize or mazimize important information.
 
-Please modify `README.md` to add:
+For the purpose of a quick demo/assignment as well as for the fact that there is a very limited amount of data available, I have opted to go with a simple feed forward network.
 
-1. Instructions on how to run your application
-2. A paragraph or two about what what algorithm was chosen for which problem, why (including pros/cons) and what you are particularly proud of in your implementation, and why
-3. Overall performance of your algorithm(s)
+The epochs is set to 300, high enough to converge without trying to overfit the data.
 
-## Submission Instructions
 
-1. Fork this project on github. You will need to create an account if you don't already have one.
-2. Complete the project as described below within your fork.
-3. Push all of your changes to your fork on github and submit a pull request. 
-4. You should also email [dev.careers@waveapps.com](dev.careers@waveapps.com) and your recruiter to let them know you have submitted a solution. Make sure to include your github username in your email (so we can match applicants with pull requests.)
+# Results
+```
+Test accuracy: 66.66666666666667%
+Precision: [1.         0.63636364 0.         0.        ]
+Recall: [0.5 1.  0.  0. ]
+F1: [0.66666667 0.77777778 0.         0.        ]
 
-## Alternate Submission Instructions (if you don't want to publicize completing the challenge)
-1. Clone the repository.
-2. Complete your project as described below within your local repository.
-3. Email a patch file to [dev.careers@waveapps.com](dev.careers@waveapps.com)
+```
 
-## Evaluation
-Evaluation of your submission will be based on the following criteria. 
+# Interpretation
+Some values of F1, Recall, and Precision are 1 or 0 which signifies that there simply isn't enough validation data. As for the accuracy, it is high enough for us to notice that there indeed is some correlation between spending habbits and its associated category. With more abundant information it would perhaps be possible to increase this value.
 
-1. Did you follow the instructions for submission? 
-2. Did you apply an appropriate machine learning algorithm for the problem and why you have chosen it?
-3. What features in the data set were used and why?
-4. What design decisions did you make when designing your models? Why (i.e. were they explained)?
-5. Did you separate any concerns in your application? Why or why not?
-6. Does your solution use appropriate datatypes for the problem as described? 
+# Question 2
+*Mixing of personal and business expenses is a common problem for small business. Create an algorithm that can separate any potential personal expenses in the training data. Labels of personal and business expenses were deliberately not given as this is often the case in our system. There is no right answer so it is important you provide any assumptions you have made*
+
+I do not have time to work on this because I am in my final school semester. However this sounds like an NLP problem with binary classification. Very easy to do with a large enough dataset of words which either relate to business expenses or personal expesnses. Naive Bayes for this, it almost sounds plug and play. 
+

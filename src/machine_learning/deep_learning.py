@@ -3,7 +3,6 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
 from sklearn.preprocessing import StandardScaler
-import numpy as np
 from data_extraction.data_extractor import Parser
 from sklearn.metrics import precision_recall_fscore_support
 
@@ -52,5 +51,3 @@ class Classifier:
         print('Precision: {}'.format(precision))
         print('Recall: {}'.format(recall))
         print('F1: {}\n'.format(f1))
-
-Classifier().train()
