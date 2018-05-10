@@ -17,7 +17,7 @@ class Classifier:
         x_test, y_test = Parser().post_process_data(Parser.validation_data_file)
         self.input_dimensions = len(x_train[0])
         clf = KerasClassifier(
-            build_fn=self._nn_architecture, epochs=300, verbose=0)
+            build_fn=self._nn_architecture, epochs=400, verbose=0)
         scaler = StandardScaler()
         self.model = Classifier._create_pipeline(scaler, clf)
         self.model.fit(x_train, y_train)

@@ -56,7 +56,7 @@ The Deep Learning classifier is excellent for this particular problem as it solv
 
 For the purpose of a quick demo/assignment as well as for the fact that there is a very limited amount of data available, I have opted to go with a simple feed forward network.
 
-The epochs is set to 300, high enough to converge without trying to overfit the data.
+The epochs is set to 300, high enough to converge without trying to overfit the data. Note that setting the epoch to 1500 also yielded 66% thus showing forth that this is the classifier's limits in regards to the data collected.
 
 
 # Results
@@ -77,3 +77,5 @@ Furthermore, a small project as this one which took me around 2 hours to evaluat
 *Mixing of personal and business expenses is a common problem for small business. Create an algorithm that can separate any potential personal expenses in the training data. Labels of personal and business expenses were deliberately not given as this is often the case in our system. There is no right answer so it is important you provide any assumptions you have made*
 
 I do not have time to work on this because I am in my final school semester (Not to mention that I am unavailable to accept this job offer in the coming month). However this sounds like an NLP problem with binary classification. Very easy to do with a large enough dataset of words which either relate to business expenses or personal expenses. Naive Bayes for this, it almost sounds plug and play. Recursive Neural Networks if you are feeling fancy.
+
+Clustering was also an idea but it is a VERY bad one as there are no empirical evidence to compare the clusters to.
