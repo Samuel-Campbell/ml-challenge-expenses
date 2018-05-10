@@ -13,7 +13,7 @@ class Parser:
         pass
 
     @staticmethod
-    def parse_csv_data(input_file):
+    def __parse_csv_data(input_file):
         data_list = []  # list of lists
         header_list = []  # list containing just the header row
         with open(input_file, "r") as csv_file:
@@ -25,15 +25,16 @@ class Parser:
                 else:
                     data_list.append(row)
                 i = i + 1
-        return Parser.__pre_process_data(data_list, header_list)
+        return data_list, header_list
 
     @staticmethod
-    def __pre_process_data(data_list, header_list):
+    def pre_process_data():
         """
         ['date', 'category', 'employee id', 'expense description', 'pre-tax amount', 'tax name', 'tax amount']
         :param data_list:
         :return:
         """
+        data_list, header_list = Parser.__parse_csv_data(Parser.training_data_file)
         table = pandas.DataFrame(data_list, columns=header_list)
         table.drop(['date', 'employee id'], axis=1, inplace=True)
         unique_categories = table['category'].unique()
@@ -75,12 +76,12 @@ class Parser:
             column_index['output'][unique_categories[i]] = {'value': i}
 
         Parser.__save_column_index(column_index)
-        return Parser.__post_process_data(data_list)
 
     @staticmethod
-    def __post_process_data(data_list):
+    def post_process_data(input_file):
+        data_list, header_list = Parser.__parse_csv_data(input_file)
         json_data = Parser.__read_column_index()
-        Y = [data[1] for data in data_list]
+        Y = [json_data['output'][data[1]]['value'] for data in data_list]
         data_list = [d[3:] for d in data_list]
         X = []
 
@@ -93,7 +94,10 @@ class Parser:
                 try:
                     float(data_list[i][j])
                 except ValueError:
-                    x[json_data['input'][data_list[i][j]]['column_index']] = 1
+                    try:
+                        x[json_data['input'][data_list[i][j]]['column_index']] = 1
+                    except KeyError:
+                        pass
             X.append(x)
         return X, Y
 
@@ -107,4 +111,3 @@ class Parser:
         with open('../data/column_index.json') as f:
             data = json.load(f)
         return data
-
