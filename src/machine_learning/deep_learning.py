@@ -4,7 +4,7 @@ from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
 from sklearn.preprocessing import StandardScaler
 from data_extraction.data_extractor import Parser
-from sklearn.metrics import precision_recall_fscore_support
+from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
 
 
 class Classifier:
@@ -17,7 +17,7 @@ class Classifier:
         x_test, y_test = Parser().post_process_data(Parser.validation_data_file)
         self.input_dimensions = len(x_train[0])
         clf = KerasClassifier(
-            build_fn=self._nn_architecture, epochs=400, verbose=0)
+            build_fn=self._nn_architecture, epochs=700, verbose=0)
         scaler = StandardScaler()
         self.model = Classifier._create_pipeline(scaler, clf)
         self.model.fit(x_train, y_train)
@@ -28,8 +28,8 @@ class Classifier:
         model.add(Dense(self.input_dimensions, input_dim=self.input_dimensions,
                         kernel_initializer='normal', activation='relu'))
         model.add(Dense(11, kernel_initializer='normal', activation='relu'))
-        model.add(Dense(1, kernel_initializer='normal', activation='sigmoid'))
-        model.compile(loss='binary_crossentropy', optimizer='adam')
+        model.add(Dense(5, kernel_initializer='normal', activation='softmax'))
+        model.compile(loss='categorical_crossentropy', optimizer='adam')
         return model
 
     @staticmethod
@@ -51,3 +51,4 @@ class Classifier:
         print('Precision: {}'.format(precision))
         print('Recall: {}'.format(recall))
         print('F1: {}\n'.format(f1))
+        print('Confusion Matrix:\n{}'.format(confusion_matrix(y_test, y_predict)))

@@ -57,15 +57,21 @@ The Deep Learning classifier is excellent for this particular problem as it solv
 
 For the purpose of a quick demo/assignment as well as for the fact that there is a very limited amount of data available, I have opted to go with a simple feed forward network.
 
-The epochs is set to 300, high enough to converge without trying to overfit the data. Note that setting the epoch to 1500 also yielded 66% thus showing forth that this is the classifier's limits in regards to the data collected.
+The epochs is set to 700, high enough to converge without trying to overfit the data. Note that setting the epoch to 1500 also yielded 66% thus showing forth that this is the classifier's limits in regards to the data collected.
 
 
 # Results
 ```
-Test accuracy: 66.66666666666667%
-Precision: [1.         0.63636364 0.         0.        ]
-Recall: [0.5 1.  0.  0. ]
-F1: [0.66666667 0.77777778 0.         0.        ]
+Test accuracy: 83.33333333333333%
+Precision: [1.         0.77777778 1.         1.        ]
+Recall: [0.5 1.  1.  0.5]
+F1: [0.66666667 0.875      1.         0.66666667]
+
+Confusion Matrix:
+[[1 1 0 0]
+ [0 7 0 0]
+ [0 0 1 0]
+ [0 1 0 1]]
 
 ```
 
