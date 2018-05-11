@@ -9,6 +9,7 @@ Before running the application run the following instructions to ensure all libr
 
 # Data Processing
 For the purpose of this task, the employee.csv file seemed completely useless and was disregarded.
+*Note: After further inspection, I believe the employee role does play its part. Including it in the data would make the classifier better*
 
 Within the trainig_data_example.csv the *date* and *emplyee id* also seemed useless.
 
