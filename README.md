@@ -53,7 +53,7 @@ Would have made sense if money spent was directly correlated to the category of 
 Support vector machines are great at binary classification OR combinational results where 1 estimator is chosen for every classification. However, for this problem an output may have many values. The only option would be a one vs. rest classifier at which point I believe there are more elegant techniques for this approach.
 
 ### Deep Learning (Chosen)
-The Deep Learning classifier is excellent for this particular problem as it solves both problematic stated above. The classifier can predict multiple categories while updating feature weights in order to minimize or maximize important information.
+The Deep Learning classifier is excellent for this particular problem as it solves both problematic stated above. The classifier can predict multiple categories while updating feature weights in order to give context to the input data. For instance, 1000$ may signify travels, or luxury dinner (paid for many people) but that can't be determined unless there is context attributed to this dollar value. This is where decisions trees may fail in my opinion for this particular problem.
 
 For the purpose of a quick demo/assignment as well as for the fact that there is a very limited amount of data available, I have opted to go with a simple feed forward network.
 
