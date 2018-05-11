@@ -8,7 +8,7 @@ Before running the application run the following instructions to ensure all libr
 * python3 main.py
 
 # Data Processing
-For the purpose of this task, the employee.csv file seemed completely useless and was disregarded.
+For the purpose of this task, the employee.csv file seemed completely useless and was disregarded.  
 *Note: After further inspection, I believe the employee role does play its part. Including it in the data would make the classifier better*
 
 Within the trainig_data_example.csv the *date* and *emplyee id* also seemed useless.
@@ -79,6 +79,8 @@ Confusion Matrix:
 Some values of F1, Recall, and Precision are 1 or 0 which signifies that there simply isn't enough validation data. As for the accuracy, it is high enough for us to notice that there indeed is some correlation between spending habbits and its associated category. With more abundant information it would perhaps be possible to increase this value.
 
 Furthermore, a small project as this one which took me around 2 hours to evaluate and code is sufficient to demonstrate whether machine learning can truly solve the problem. Because there are 5 possible outputs AND the accuracy is over 0.20% then we can assume that the prediction functioned without randomness.
+
+Finally, I would of liked to verify the results by adding the employee roles. Unfortunately I did not think of it originally and they are not part of the inputs currently.
 
 # Question 2
 *Mixing of personal and business expenses is a common problem for small business. Create an algorithm that can separate any potential personal expenses in the training data. Labels of personal and business expenses were deliberately not given as this is often the case in our system. There is no right answer so it is important you provide any assumptions you have made*
