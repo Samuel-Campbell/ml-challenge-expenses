@@ -47,10 +47,10 @@ After preprocessing the data, a json file is created in /ml-challenge-expenses/d
 # ML Technique used
 ## Hypothesis
 ### Decision Trees 
-Would have made sense if money spent was directly correlated to the category of prediction. (brackets of spent money). In this context, using continuous values didn't feel appropriate as spending 1000$ could indicate a very expensive dinner or a plane ticket. For this reason, the decision tree would have performed very poorly in my opinion.
+Would have made sense if money spent was directly correlated to the category of prediction. (brackets of spent money). In this context, using continuous values didn't feel appropriate as spending 1000$ could indicate a very expensive dinner or a plane ticket. For this reason, the decision tree would have performed very poorly in my opinion (**in the long run with more data given the bias**).
 
 ### Support Vector Machines
-Support vector machines are great at binary classification OR combinational results where 1 estimator is chosen for every classification. However, for this problem an output may have many values. The only option would be a one vs. rest classifier at which point I believe there are more elegant techniques for this approach.
+Support vector machines are great at binary classification OR combinational results where 1 estimator is chosen for every classification. However, for this problem an output may have many values. The only option would be a one vs. rest classifier at which point I believe there are more elegant techniques for this approach. The SVM is hard to configure although it may still present with higher accuracy given a small dataset.
 
 ### Deep Learning (Chosen)
 The Deep Learning classifier is excellent for this particular problem as it solves both problematic stated above. The classifier can predict multiple categories while updating feature weights in order to give context to the input data. For instance, 1000$ may signify travels, or luxury dinner (paid for many people) but that can't be determined unless there is context attributed to this dollar value. This is where decisions trees may fail in my opinion for this particular problem.
@@ -58,6 +58,9 @@ The Deep Learning classifier is excellent for this particular problem as it solv
 For the purpose of a quick demo/assignment as well as for the fact that there is a very limited amount of data available, I have opted to go with a simple feed forward network.
 
 The epochs is set to 700, high enough to converge without trying to overfit the data. Note that setting the epoch to 1500 also yielded 83% thus showing forth that this is the classifier's limits in regards to the data collected.
+
+### Random Forest
+I think this classifier would have performed the best with small amounts of data. It is also a relatively safe approach for a first attempt at classification. I did not use this simply because I would assume that the system would have a very large amount of data from which ANN might outperform this technique given a full training set.
 
 
 # Results
