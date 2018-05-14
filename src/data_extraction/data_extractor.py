@@ -17,6 +17,9 @@ class Parser:
 
     @staticmethod
     def __parse_csv_data(input_file):
+        """
+        :param input_file: File path
+        """
         data_list = []  # list of lists
         header_list = []  # list containing just the header row
         with open(input_file, "r") as csv_file:
@@ -33,6 +36,13 @@ class Parser:
     @staticmethod
     def pre_process_data():
         """
+        Creates a JSON file with all the vector information input/outputs
+
+        All features have a different index in the vector which is stored in this JSON file.
+        Furthermore, all features are assigned a type (int or string).
+
+        :return: None
+
         ['date', 'category', 'employee id', 'expense description', 'pre-tax amount', 'tax name', 'tax amount']
         :param data_list:
         :return:
@@ -82,6 +92,14 @@ class Parser:
 
     @staticmethod
     def post_process_data(input_file):
+        """
+        Transforms the dataset into vectors for the machine learning.
+        The transformation is done by using meta data from the JSON file used in the
+        preprocessing step
+
+        :param input_file: File path
+        :return: input --> numpy.array(), output --> numpy.array()
+        """
         data_list, header_list = Parser.__parse_csv_data(input_file)
         json_data = Parser.__read_column_index()
         Y = [json_data['output'][data[1]]['value'] for data in data_list]
